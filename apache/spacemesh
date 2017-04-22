@@ -1,0 +1,11 @@
+ServerName localhost
+DocumentRoot /web
+AllowOverride All
+ServerAdmin hello@spacemesh.com
+ServerSignature Off
+ServerTokens Prod
+
+<Directory "/web">
+    Options -Indexes
+    AllowOverride All
+</Directory>
