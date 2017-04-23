@@ -19,3 +19,7 @@ AllowTcpForwarding no
 Subsystem sftp internal-sftp
 ForceCommand internal-sftp
 ChrootDirectory %h
+
+# More logs
+
+LogLevel VERBOSE
