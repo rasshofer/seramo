@@ -13,7 +13,17 @@ UseDNS no
 PermitRootLogin no
 X11Forwarding no
 AllowTcpForwarding no
+PrintMotd no
 
 # More logs
 
 LogLevel VERBOSE
+
+# Force SFTP and chroot jail
+
+Subsystem sftp internal-sftp
+
+Match Group sftponly
+  ChrootDirectory %h
+  ForceCommand internal-sftp
+  AllowTcpForwarding no
