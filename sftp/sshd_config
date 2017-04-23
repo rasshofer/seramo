@@ -14,12 +14,6 @@ PermitRootLogin no
 X11Forwarding no
 AllowTcpForwarding no
 
-# Force SFTP and chroot jail
-
-Subsystem sftp internal-sftp
-ForceCommand internal-sftp
-ChrootDirectory %h
-
 # More logs
 
 LogLevel VERBOSE
