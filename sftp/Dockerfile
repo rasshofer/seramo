@@ -1,8 +1,10 @@
 FROM alpine:latest
 MAINTAINER SpaceMesh <hello@spacemesh.com>
 
-RUN apk update && apk upgrade && apk add --no-cache openssh openssh-sftp-server bash
+RUN apk update && apk upgrade && apk add --no-cache openssh openssh-sftp-server bash shadow
 RUN rm -rf /var/cache/apk/*
+
+RUN groupadd sftponly
 
 RUN mkdir -p /etc/ssh/keys
 
