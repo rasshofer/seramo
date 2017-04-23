@@ -9,6 +9,8 @@ RUN mkdir -p /etc/ssh/keys
 COPY sshd_config /etc/ssh/sshd_config
 COPY entrypoint /entrypoint
 
+RUN chmod +x /entrypoint
+
 VOLUME /etc/ssh/keys
 
 EXPOSE 22
