@@ -17,4 +17,4 @@ VOLUME /etc/ssh/keys
 
 EXPOSE 22
 
-ENTRYPOINT ["/entrypoint"]
+CMD /entrypoint
