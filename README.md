@@ -1,3 +1,3 @@
-# SpaceMesh
+# Seramo
 
-> Docker images for SpaceMesh
+> Docker images for Seramo

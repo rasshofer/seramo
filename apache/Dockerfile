@@ -1,12 +1,12 @@
 FROM httpd:alpine
-MAINTAINER SpaceMesh <hello@spacemesh.com>
+MAINTAINER Seramo <hello@seramo.com>
 
 RUN mkdir /web && chown -R www-data:www-data /web
 RUN mkdir /logs && chown -R www-data:www-data /logs
 
-COPY spacemesh.conf /usr/local/apache2/conf/spacemesh.conf
+COPY seramo.conf /usr/local/apache2/conf/seramo.conf
 
-RUN echo "Include conf/spacemesh.conf" >> /usr/local/apache2/conf/httpd.conf
+RUN echo "Include conf/seramo.conf" >> /usr/local/apache2/conf/httpd.conf
 
 VOLUME /web
 VOLUME /logs
