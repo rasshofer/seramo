@@ -1,8 +1,27 @@
-FROM seramo/apache
+FROM php:apache
 MAINTAINER Seramo <hello@seramo.com>
 
-RUN apk update && apk upgrade && apk add --no-cache libressl curl openssl php7 php7-apache2 php7-openssl php7-mbstring php7-apcu php7-intl php7-mcrypt php7-json php7-gd php7-curl php7-fpm php7-mysqlnd php7-pgsql php7-sqlite3 php7-phar
-RUN rm -rf /var/cache/apk/*
+RUN mkdir /web && chown -R www-data:www-data /web
+RUN mkdir /logs && chown -R www-data:www-data /logs
 
+COPY seramo.conf /etc/apache2/conf-enabled/seramo.conf
+COPY php.ini /usr/local/etc/php/conf.d/php.ini
 
-RUN cd /tmp && curl -sS https://getcomposer.org/installer | php && mv composer.phar /usr/local/bin/composer
+RUN apt-get update && apt-get install -y git sendmail libssl-dev libpq-dev libjpeg-dev libpng-dev libssh2-1-dev libssh2-php
+RUN git clone https://github.com/php/pecl-networking-ssh2.git /usr/src/php/ext/ssh2 && docker-php-ext-install ssh2
+
+RUN docker-php-ext-configure gd --with-png-dir=/usr --with-jpeg-dir=/usr
+RUN docker-php-ext-install gd zip ftp opcache mysqli pdo_mysql pgsql pdo_pgsql
+
+RUN a2enmod rewrite
+RUN a2enmod remoteip
+RUN a2enmod expires
+
+RUN apt-get autoremove -yqq
+RUN apt-get clean
+RUN rm -rf /var/cache/apt/archives/* /var/lib/apt/lists/* /tmp/* /var/tmp/*
+
+RUN echo "127.0.0.1 noreply.domain.com $(hostname)" >> /etc/hosts
+
+VOLUME /web
+VOLUME /logs
