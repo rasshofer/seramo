@@ -7,7 +7,7 @@ RUN mkdir /logs && chown -R www-data:www-data /logs
 COPY seramo.conf /etc/apache2/conf-enabled/seramo.conf
 COPY php.ini /usr/local/etc/php/conf.d/php.ini
 
-RUN apt-get update && apt-get install -y git sendmail libssl-dev libpq-dev libjpeg-dev libpng-dev libssh2-1-dev libssh2-php
+RUN apt-get update && apt-get install -y git sendmail libssl-dev libpq-dev libjpeg-dev libpng-dev libssh2-1-dev
 RUN git clone https://github.com/php/pecl-networking-ssh2.git /usr/src/php/ext/ssh2 && docker-php-ext-install ssh2
 
 RUN docker-php-ext-configure gd --with-png-dir=/usr --with-jpeg-dir=/usr
