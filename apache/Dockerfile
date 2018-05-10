@@ -1,8 +1,8 @@
 FROM httpd:alpine
 MAINTAINER Seramo <hello@seramo.com>
 
-RUN mkdir /web && chown -R www-data:www-data /web
-RUN mkdir /logs && chown -R www-data:www-data /logs
+RUN apk --no-cache add shadow
+RUN usermod -u 1000 www-data
 
 COPY seramo.conf /usr/local/apache2/conf/seramo.conf
 

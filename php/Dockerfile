@@ -1,8 +1,7 @@
 FROM php:apache
 MAINTAINER Seramo <hello@seramo.com>
 
-RUN mkdir /web && chown -R www-data:www-data /web
-RUN mkdir /logs && chown -R www-data:www-data /logs
+RUN usermod -u 1000 www-data
 
 COPY seramo.conf /etc/apache2/conf-enabled/seramo.conf
 COPY php.ini /usr/local/etc/php/conf.d/php.ini
