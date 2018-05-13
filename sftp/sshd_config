@@ -24,6 +24,6 @@ LogLevel VERBOSE
 Subsystem sftp internal-sftp
 
 Match Group sftponly
-  ChrootDirectory %h
+  ChrootDirectory /sftp
   ForceCommand internal-sftp
   AllowTcpForwarding no

@@ -14,6 +14,7 @@ COPY entrypoint /entrypoint
 RUN chmod +x /entrypoint
 
 VOLUME /etc/ssh/keys
+VOLUME /sftp
 
 EXPOSE 22
 
